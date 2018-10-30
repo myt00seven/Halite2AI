@@ -1,0 +1,123 @@
+
+v0: 
+    conquer unmanned planets √
+
+v1: 
+    attack to closest enemy planet when all planets occupied √
+
+v2: 
+    if in docking range but can't dock, aim at nearby enemy ships √
+    improve collision detect from huizew √
+    Search and Attack in all cases √
+
+v3: 37.22, rank 179
+    first priority attack docking/docked ships within 84 units √
+    timeout control √
+
+v4: 36.95 rank:310
+    - Improve judge starting with rush with distance threshold
+    - before docking, if enemy exists nearby, don't dock -> attack enemy ship (not best choice but still better than docking )
+    - count rush (undock all and charge)
+    - simple close combat, attack nearby enemies
+
+v5: 38.81, rank :245
+    - better planet finding 
+    - rewrite the prioirt control for ship command
+
+v6:
+    - comment rush mode since there appears to have some bugs
+
+(fix version records)
+
+v12: 
+    - try to fix the rush decision 
+
+v13:
+    - fix bug
+
+v15: 34.01, rank 529
+    - when attacking incoming enemy, consider their past speed to intercept instead of chasing
+    - sort all ships based on distance to closest enemy before issuing commands, by modifying get all free ships function
+
+v16: 37.92, rank 278
+    - fix minor bug
+
+v17: 38.67 rank 245
+    - keep task consisteny by remembering conquer and defense task and resume them when no close by threat    
+    - first iterate through task than ships, make sure no time out and easier to control task priority
+    - store the task on each ship, don't let it seems to be hesitant (only allow turn to more prioritized task)
+    
+v18: 33.48, rank 561
+    - change constants if 4 players
+
+v19: 41.87, rank 167
+    - fix no rush bug
+
+v20: 44.75, rank 106
+    - add battle status assessment to "combat", smart retreat and rescue
+
+v21: 47.92, rank 62
+    - improve close combat
+
+v22: 50.6, rank 50
+    - add auto grouping 
+
+v23: 
+    - grid search a lot of parameters, thounds of test on rush parameter
+    - fix bug in any ratio and no ratio, which stops the ship under these two commands
+    - when retreat, add a factor to replace the current mid point of escape point and ally point
+    - fix bug in time control
+    - haven't finished grid search and tuning
+
+v24:
+    - continue grid search, tuning grouping and retreat balance
+    - 2nd level time control
+    - grid search 2p planet factor
+    - grid search when to rush 
+
+v25:
+    - improve 4p parameters
+    - grid search 4p planet factor
+    - differnt hunting range for 2p and 4p (play more conservative for 4p)
+
+v26:
+    - total rewrite navigation system, use field retreat to replace original retreat; didn't replace the original 
+    - haven't fixed the boundary angle direction when retreating
+
+v27:
+    - roll back to v25, but remove suicide
+
+v28:
+    - retreat to cloeset point (WEAPON+ MOVE +1) + 0.5 allypoint grouping
+
+v29:
+    - compute field_score for all ships in begining
+    - improve close combat choice
+    - rush optimize path, multiple calc the navi
+
+v30:
+    - remove rescue
+    - optimize 4p parameters, basically same as 2p
+
+v31:
+    - no rescue
+    - steal
+
+v32:
+    - turn off steal
+
+v33:
+    - improve time control
+
+todo:
+    - tempo, soften nto1 ratio sometimes
+    - * improve attack weak enemy by adding avoid incoming ships function!
+        - improve 4p with special tactics,  rush the cloest one when in advantage/close distance, allow switch back from rush to 
+    - use movement field to avoid enemy, improve the current keep_from as well
+    - what should the ship do when stealing task is finished?
+
+    - similar idea: allow split one ship to rush in the first place (let ALLOW_DOCK be a property of ship?)
+    # todo: we can try curve+field to close combat
+
+future features:
+    - dock more when 4p
